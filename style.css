@@ -1,121 +1,133 @@
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    background-color: #3b82f6; /* azul */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    transition: background 0.5s ease;
 }
 
+/* Container do quiz */
 .quiz-container {
     background: white;
     padding: 30px;
-    width: 350px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     text-align: center;
     transition: transform 0.3s ease;
 }
 
 .quiz-container:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02); /* efeito de leve aumento ao passar o mouse */
 }
 
+/* Pergunta */
 #question {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 20px;
-    font-weight: bold;
+    transition: transform 0.2s ease, color 0.3s ease;
 }
 
+#question:hover {
+    transform: scale(1.05); /* aumenta levemente */
+    color: #1e40af; /* muda cor para azul escuro ao passar o mouse */
+}
+
+/* Contêiner das respostas */
 .answers {
     display: flex;
     flex-direction: column;
 }
 
+/* Botões de resposta */
 .answer {
-    margin: 5px 0;
+    margin: 6px 0;
     padding: 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     background-color: #e0e0e0;
-    font-size: 16px;
     transition: transform 0.2s ease, background-color 0.3s ease;
+    font-size: 16px;
 }
 
 .answer:hover {
     background-color: #d4d4d4;
-    transform: scale(1.03);
+    transform: scale(1.03); /* aumenta levemente ao passar o mouse */
 }
 
 .answer:active {
-    transform: scale(0.97);
+    transform: scale(0.97); /* efeito ao clicar */
 }
 
+/* Resposta correta e errada */
 .correct {
     background-color: #4CAF50 !important;
     color: white;
-    animation: correctFlash 0.4s;
 }
 
 .wrong {
     background-color: #f44336 !important;
     color: white;
-    animation: wrongFlash 0.4s;
 }
 
-@keyframes correctFlash {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-@keyframes wrongFlash {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
+/* Feedback */
 #feedback {
     margin: 15px 0;
     font-weight: bold;
-    min-height: 24px;
     font-size: 16px;
     transition: color 0.3s ease;
 }
 
-#next-btn, #restart-btn {
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-    display: none;
-    margin-top: 10px;
-    transition: transform 0.2s ease, opacity 0.3s ease;
-}
-
+/* Botão Próxima Pergunta */
 #next-btn {
+    padding: 12px 20px;
+    border: none;
     background-color: #2196F3;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
+    font-size: 16px;
+    transition: 0.3s, transform 0.2s ease;
 }
 
 #next-btn:hover {
-    transform: scale(1.05);
+    background-color: #1976D2;
+    transform: scale(1.05); /* aumenta levemente ao passar o mouse */
 }
 
+/* Botão Reiniciar Quiz */
 #restart-btn {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: none;
     background-color: #4CAF50;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
+    font-size: 16px;
     animation: fadeIn 0.6s ease-in-out;
+    transition: 0.3s, transform 0.2s ease;
 }
 
 #restart-btn:hover {
-    transform: scale(1.05);
+    background-color: #388E3C;
+    transform: scale(1.05); /* aumenta levemente ao passar o mouse */
 }
 
+/* Animação fadeIn para o botão reiniciar */
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

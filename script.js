@@ -36,8 +36,9 @@ const questionElement = document.getElementById("question");
 const answersContainer = document.querySelector(".answers");
 const feedback = document.getElementById("feedback");
 const nextButton = document.getElementById("next-btn");
-const restartBtn = document.getElementById("restart-btn");
+const restartButton = document.getElementById("restart-btn");
 
+// Exibe a pergunta atual
 function showQuestion() {
     resetState();
 
@@ -48,30 +49,38 @@ function showQuestion() {
         const button = document.createElement("button");
         button.textContent = answer.text;
         button.classList.add("answer");
+
         button.addEventListener("click", () => selectAnswer(answer, button));
         answersContainer.appendChild(button);
     });
 }
 
+// Seleciona a resposta e dá feedback
 function selectAnswer(answer, button) {
     if (answer.correct) {
         button.classList.add("correct");
         feedback.textContent = "Resposta correta!";
+        score++;
     } else {
         button.classList.add("wrong");
         feedback.textContent = "Resposta errada!";
     }
 
-    Array.from(answersContainer.children).forEach(btn => btn.disabled = true);
+    Array.from(answersContainer.children).forEach(btn => {
+        btn.disabled = true;
+    });
+
     nextButton.style.display = "block";
 }
 
+// Reseta o estado para a próxima pergunta
 function resetState() {
     feedback.textContent = "";
     nextButton.style.display = "none";
     answersContainer.innerHTML = "";
 }
 
+// Botão "Próxima pergunta"
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
 
@@ -82,25 +91,28 @@ nextButton.addEventListener("click", () => {
     }
 });
 
+// Mostra o resultado final
 function showScore() {
+    quizFinished = true;
     questionElement.textContent = "🎉 Quiz finalizado!";
     answersContainer.innerHTML = "";
     feedback.textContent = `Você acertou ${score} de ${questions.length} perguntas!`;
+
     nextButton.style.display = "none";
-    restartBtn.style.display = "block";
-    quizFinished = true;
+    restartButton.style.display = "block";
 }
 
-// **Botão Reiniciar Quiz**
-restartBtn.addEventListener("click", () => {
+// Botão "Reiniciar Quiz"
+restartButton.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
     quizFinished = false;
 
-    restartBtn.style.display = "none";
+    restartButton.style.display = "none";
     nextButton.style.display = "none";
 
     showQuestion();
 });
 
+// Inicializa o quiz
 showQuestion();
