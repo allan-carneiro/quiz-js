@@ -18,7 +18,7 @@ const questions = [
         ]
     },
     {
-        question: "Qual linguagem é usada para criar interatividade em sites?",
+        question: "Qual linguagem é usada para criar interatividade no site?",
         answers: [
             { text: "HTML", correct: false },
             { text: "CSS", correct: false },
@@ -30,12 +30,13 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
+let quizFinished = false;
 
 const questionElement = document.getElementById("question");
 const answersContainer = document.querySelector(".answers");
 const feedback = document.getElementById("feedback");
 const nextButton = document.getElementById("next-btn");
-const restartButton = document.getElementById("restart-btn");
+const restartBtn = document.getElementById("restart-btn");
 
 function showQuestion() {
     resetState();
@@ -47,7 +48,6 @@ function showQuestion() {
         const button = document.createElement("button");
         button.textContent = answer.text;
         button.classList.add("answer");
-
         button.addEventListener("click", () => selectAnswer(answer, button));
         answersContainer.appendChild(button);
     });
@@ -57,16 +57,12 @@ function selectAnswer(answer, button) {
     if (answer.correct) {
         button.classList.add("correct");
         feedback.textContent = "Resposta correta!";
-        score++;
     } else {
         button.classList.add("wrong");
         feedback.textContent = "Resposta errada!";
     }
 
-    Array.from(answersContainer.children).forEach(btn => {
-        btn.disabled = true;
-    });
-
+    Array.from(answersContainer.children).forEach(btn => btn.disabled = true);
     nextButton.style.display = "block";
 }
 
@@ -91,13 +87,19 @@ function showScore() {
     answersContainer.innerHTML = "";
     feedback.textContent = `Você acertou ${score} de ${questions.length} perguntas!`;
     nextButton.style.display = "none";
-    restartButton.style.display = "block";
+    restartBtn.style.display = "block";
+    quizFinished = true;
 }
 
-restartButton.addEventListener("click", () => {
+// **Botão Reiniciar Quiz**
+restartBtn.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
-    restartButton.style.display = "none";
+    quizFinished = false;
+
+    restartBtn.style.display = "none";
+    nextButton.style.display = "none";
+
     showQuestion();
 });
 
