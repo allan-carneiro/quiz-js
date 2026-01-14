@@ -18,10 +18,10 @@ Você pode responder perguntas e ver seu desempenho no final!
 - JavaScript (ES6)
 - Git e GitHub Pages para deploy
 
-[🌟 Teste agora](https://allan-carneiro.github.io/quiz-interativo-js/index.html)
+[Teste agora](https://allan-carneiro.github.io/quiz-js/)
 
 ## Como usar
 
 1. Clone este repositório:
 ```bash
-git clone https://github.com/allan-carneiro/quiz-interativo-js.git
+git clone https://github.com/allan-carneiro/quiz-js.git
